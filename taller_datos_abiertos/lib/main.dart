@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:go_router/go_router.dart';
 
-final GoRouter _router = GoRouter(
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const _HomeView(),
-    ),
-  ],
-);
+import 'routes/app_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,25 +17,11 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       title: 'Datos Abiertos de Colombia',
       debugShowCheckedModeBanner: false,
-      routerConfig: _router,
-    );
-  }
-}
-
-class _HomeView extends StatelessWidget {
-  const _HomeView();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Datos Abiertos de Colombia'),
+      theme: ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: const Color(0xFF0E7490),
       ),
-      body: Center(
-        child: const Text(
-          'Estructura inicial configurada',
-        ),
-      ),
+      routerConfig: appRouter,
     );
   }
 }
